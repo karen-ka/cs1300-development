@@ -97,9 +97,7 @@ class MyGrid extends React.Component {
         <Layout>
         <Sider style={siderStyle}>
         <Space direction="vertical" align="center" size="large">
-          {/* <p></p>
-          <p></p>
-          <p></p> */}
+
           <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}></Row>
           <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}></Row>
           <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}></Row>
