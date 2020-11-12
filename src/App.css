@@ -1,5 +1,26 @@
 @import '~antd/dist/antd.dark.css';
 
+.ant-select {
+  margin: 0 0 10px 8px;
+}
+
+.ant-card-extra {
+  font-size: 12px;
+  vertical-align: middle;
+  /* float: left; */
+}
+
+.ant-card-body {
+  padding-top: 0;
+}
+.ant-card-cover {
+  display: auto;
+}
+
+.ant-card-extra-override {
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }

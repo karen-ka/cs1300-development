@@ -1,4 +1,4 @@
-// const o = [
+// export default typedict = [
 //     {"name":"normal","eff":"11111½10½111111111","color":"A8A878"},
 //     {"name":"fighting","eff":"21½½12½021111½212½","color":"C03028"},
 //     {"name":"flying","eff":"12111½21½112½11111","color":"A890F0"},
@@ -17,7 +17,9 @@
 //     {"name":"dragon","eff":"11111111½111111210","color":"7038F8"},
 //     {"name":"dark","eff":"1½11111211111211½½","color":"705848"},{"name":"fairy","eff":"121½1111½½11111221","color":"EE99AC"}
 // ]
-const typemap = { "normal":"#A8A878", "fighting":"#C03028", "flying":"#A890F0",
+const typemap = { "normal":"#A8A878", 
+"fighting":"#C03028", 
+"flying":"#A890F0",
 "poison": "#A040A0",
 "ground":"#E0C068",
 "rock":"#B8A038",
