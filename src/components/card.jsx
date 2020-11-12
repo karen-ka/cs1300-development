@@ -80,7 +80,7 @@ export default class MyCard extends React.Component {
           {typetags(this.props.type)}
           <br></br>
           <br></br>
-          <Row gutter={8}>
+          <Row gutter={8} style={{padding: '0 0 0 22px'}}>
             <Col>
             <p><b>HP: </b>{this.props.hp}</p>
             </Col>

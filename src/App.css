@@ -27,7 +27,7 @@
 .ant-card-body {
   /* padding-top: 0;
   padding-bottom: 0; */
-  padding: 0 0 0px 22px;
+  padding: 0 0 0 0px;
 }
 .ant-card-cover {
   display: inline-flex;
