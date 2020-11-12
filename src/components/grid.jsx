@@ -1,32 +1,60 @@
-import { Alert, Button, Card, Col, Select, Row, message } from 'antd';
+import { Button, Col, Row, Tabs, Space, Switch, message } from 'antd';
 import MyCard from './card.jsx';
 import React from 'react';
-import TagSelect from './tagselect.js';
 import MyRadio from './radio.js';
-import { List } from 'antd/lib/form/Form';
 import TeamDrawer from './drawer.jsx';
+import pokeball from '../pokeball1.png';
+import pkmn from '../data.js'
+import { Layout } from 'antd';
+const { Header, Footer, Sider, Content } = Layout;
 
 const gridStyle = {
-    width: '75%',
     align: 'center',
   };
+const blur = {
+  backgroundColor: 'rgba(0, 0, 0, 0.3)',
+  width: '100%',
+};
+const siderStyle = {
+  overflow: 'auto',
+  height: '100vh',
+  position: 'fixed',
+  left: 0,
+  textAlign: 'left',
+  paddingLeft: '10px',
+  // alignItems: 'center',
+}
+
+const orig = [...pkmn];
 
 class MyGrid extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {date: new Date()};
         this.state = {
+            original: [...orig],
             data: this.props.data,
             team: new Array(),
             showSuccess: false,
         };
-
+        // var test = this.props.data.filter(li => li["pokedex_number"] < 5);
         this.drawerElement = React.createRef();
-        // this.data = this.yourFunction.bind(this)
+        this.radioGroup= React.createRef();
       }
 
     handleMessageClick = () => {
       this.drawerElement.current.showDrawer();
+    }
+
+    handleReset = () => {
+      // console.log(this.state.data, this.state.original)
+      // this.setState({data: this.state.original})
+      this.setState({data: this.state.original, original: [...orig]}, () => {console.log(this.state)})
+      this.radioGroup.current.handleReset();
+      console.log(this.state)
+    }
+
+    handleFilter = (q) => {
+      // this.setState()
     }
 
     addTeam(mon) {
@@ -41,13 +69,9 @@ class MyGrid extends React.Component {
         // console.log("heyahe", mon, newTeam);
         this.setState({team: newTeam, showSuccess:true});
         // console.log('state', this.state);
-        // this.state.team.concat(mon)
         message.success({
           content: <div>{`Added ${mon.name} to the team.`} <Button type="link" onClick={this.handleMessageClick}>View Team</Button></div>,
           duration: 4,
-          // style: {
-          //   width: '100vh',
-          // },
         });
       }
     }
@@ -64,32 +88,82 @@ class MyGrid extends React.Component {
     }
 
     render() {
-        // console.log('yoyo')
+        console.log('rerendering grid...', this.state.data)
         // console.log(this.state.data);
-        console.log(this.state.showSuccess)
+        // console.log(this.state.showSuccess)
         return (
         <div className="site-card-wrapper" style={gridStyle}>
-        <Row>
-            <Col flex="auto">
-            <TeamDrawer ref={this.drawerElement}
+        
+        <Layout>
+        <Sider style={siderStyle}>
+        <Space direction="vertical" align="center" size="large">
+          {/* <p></p>
+          <p></p>
+          <p></p> */}
+          <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}></Row>
+          <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}></Row>
+          <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}></Row>
+          <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}><Col></Col></Row>
+          <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
+          {/* <Col xs={20} sm={16} md={12} lg={8} xl={6}></Col>
+          <Col xs={20} sm={16} md={12} lg={8} xl={6}></Col> */}
+
+          <Col>
+          <Button type="primary" shape="round" size={'medium'} onClick={this.handleMessageClick}>
+                View Team
+              </Button>
+          </Col>
+          </Row>
+          <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
+
+        {/* <Col span={16}></Col> */}
+
+        <Col>
+        <MyRadio ref={this.radioGroup} data={this.state.data} setState={state => this.setState(state)}></MyRadio>
+        </Col>
+        </Row>
+        <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
+        <Col>
+          <Button type="default" shape="round" size={'medium'} onClick={this.handleReset}>
+                Clear
+              </Button>
+          </Col>
+          </Row>
+
+
+        {/* <Row>
+
+        </Row> */}
+        </Space>
+        </Sider>
+
+        <Layout style={{ marginLeft: 200 }}>
+        <Header style={{height: '20vh', backgroundColor: 'black'}}>
+          <Row justify="space-around" align="middle">
+            {/* <div width='100%' alignItems='center'> */}
+            <Col>
+          <h1 style={{fontSize: '50px'}}>TEAM</h1>
+          </Col>
+          <Col>
+        <img src={pokeball} className="App-logo" alt="logo" />
+        </Col>
+        <Col>
+        <h1 style={{fontSize: '50px'}}>BUILDER</h1>
+        </Col>
+        {/* </div> */}
+        </Row>
+        </Header>
+        <Content style={{ margin: '24px 24px 0', overflow: 'initial' }}>
+        <TeamDrawer ref={this.drawerElement}
             team={this.state.team}
             removeTeam = {mon => this.removeTeam(mon)}
             ></TeamDrawer>
-            </Col>
-        </Row>
-        <Row>
-            <Col span={3}>
-            <TagSelect></TagSelect>
-            </Col>
-            <Col span={10}>
-            <MyRadio data={this.state.data} setState={state => this.setState(state)}></MyRadio>
-            </Col>
-        </Row>
-
-        <Row gutter={[16, 24]} span={2}>
+        {/* <Row gutter={[0, 8]}> */}
+          <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
           {/* <Col span={8}> */}
-            {this.props.data.map(li => (
-                <Col span={6}>
+            {this.state.data.map(li => (
+                // <Col span={8} xs={20} sm={16} md={12} lg={8} xl={4}>
+                  <Col span={8} xs={20} sm={16} md={12} lg={8} xl={6}>
                 <MyCard
                     name={li.name}
                     number={li.pokedex_number}
@@ -100,7 +174,7 @@ class MyGrid extends React.Component {
                     addTeam={mon => this.addTeam(mon)}
                     team={this.state.team}
                     setState={state => this.setState(state)}
-                    data={this.props.data ? this.props.data : 'hi'}
+                    data={this.state.data}
                     inGrid = {true}
                 >
                 </MyCard>
@@ -108,6 +182,10 @@ class MyGrid extends React.Component {
           ))}
           {/* </Col> */}
         </Row>
+        </Content>
+        </Layout>
+        </Layout>
+        {/* </Layout> */}
       </div>
         )
     }

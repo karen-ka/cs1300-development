@@ -49,6 +49,7 @@ export default class MyCard extends React.Component {
     }
 
     render() {
+      console.log('rerendering card...')
       // console.log('oooooo', this.props.inGrid)
       return <Card
         size={this.props.inGrid ? 'default' : 'small'}

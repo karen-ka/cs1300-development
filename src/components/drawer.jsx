@@ -59,9 +59,6 @@ class TeamDrawer extends React.Component {
         }
         return (
             <>
-              <Button type="primary" onClick={this.showDrawer}>
-                View Team
-              </Button>
               <Drawer
                 title="Your Team"
                 placement="right"
