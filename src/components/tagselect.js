@@ -34,7 +34,38 @@ function tagRender(props) {
 
 
 class TagSelect extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    state = {
+        tags: [""],
+        data: this.props.data,
+    };
+
+    onSelect = e => {
+        console.log(e);
+        var label;
+        for(var i = 0; i < typedict.length; i++) {
+            console.log(typedict[i], typedict[i].value, e, typedict[i].value === e)
+            if(typedict[i].value === e) {
+                label = typedict[i].label;
+            }
+        }
+        // console.log('select checked', e.target.value);
+        var valCopy = this.state.tags;
+        valCopy.push(label);
+
+        this.setState({
+          tags: valCopy,
+        });
+        console.log(this.state, this.props)
+        // this.props.setState({data: this.props.data.filter(li => li["type1"] in valCopy && li["type2"] in valCopy)})
+      };
+
+    
+
     render() {
+        console.log('render', this.props)
         return (
             <Select
                 placeholder="Filter by type"
@@ -43,6 +74,7 @@ class TagSelect extends React.Component {
                 tagRender={tagRender}
                 style={{ width: '100%' }}
                 options={typedict}
+                onSelect={this.onSelect}
             />  
         )
     }

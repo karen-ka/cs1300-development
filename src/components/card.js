@@ -5,16 +5,6 @@ import typemap from '../types.js'
 import { PlusCircleOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
-// ReactDOM.render(
-//   <Card
-//     hoverable
-//     style={{ width: 240 }}
-//     cover={<img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" />}
-//   >
-//     <Meta title="Europe Street beat" description="www.instagram.com" />
-//   </Card>,
-//   mountNode,
-// );
 const images = require.context('../imgs', true);
 function typetags(props) {
     // console.log('props here', props)
@@ -31,22 +21,25 @@ function typetags(props) {
 }
 
 export default class MyCard extends React.Component {
-    // imgsrc = "../imgs/" + this.props.number + ".png"
-    // images = require.context('../imgs', true);
+
+    constructor(props) {
+        super(props);
+      }
+
     render() {
-        // console.log(this.props)
-    // console.log()
       return <Card
         extra={<p class='ant-card-extra-override'>{`# ${this.props.number}`}</p>}
         hoverable
         style={{ width: 240 }}
         title={this.props.name}
-        // <img src={`${process.env.PUBLIC_URL}/image.jpg`} />
         cover={<img style={{width: 100, height: 100, alignSelf: 'center'}}alt={this.props.name} src={`${process.env.PUBLIC_URL}/images/${this.props.number}.png`}/>}
-        // cover={<img alt={this.props.name} src={require(`../imgs/${this.props.number}.png`)} />}
         actions={[
-            // <PlusCircleOutlined key="add" title="HI"/>,
-            <Button icon={<PlusCircleOutlined />}>Add to team</Button>,
+            <Button
+                icon={<PlusCircleOutlined />}
+                // onClick={this.props.setState({team: this.props.team.push({name: this.props.name, number: this.props.number, type: this.props.type})})}
+            >
+                Add to team
+            </Button>,
           ]}
         >
       <Meta description={typetags(this.props.type)} />
@@ -59,4 +52,6 @@ export default class MyCard extends React.Component {
     number: PropTypes.number.isRequired,
     // number: PropTypes.n.isRequired,
     type: PropTypes.array.isRequired,
+    team: PropTypes.array.isRequired,
+    setState: PropTypes.func,
   };

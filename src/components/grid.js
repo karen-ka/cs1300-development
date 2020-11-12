@@ -3,6 +3,8 @@ import MyCard from './card.js';
 import React from 'react';
 import TagSelect from './tagselect.js';
 import MyRadio from './radio.js';
+import { List } from 'antd/lib/form/Form';
+import TeamDrawer from './drawer.js';
 
 // ReactDOM.render(
 //   <div className="site-card-wrapper">
@@ -51,14 +53,29 @@ class MyGrid extends React.Component {
         // this.state = {date: new Date()};
         this.state = {
             data: this.props.data,
+            team: new Array(),
         };
+        // this.data = this.yourFunction.bind(this)
       }
+
+    addTeam(mon) {
+        var newTeam = this.state.team + [mon]
+        console.log(newTeam)
+        this.setState({team: newTeam});
+        console.log('state', this.state)
+        // this.state.team.concat(mon)
+    }
 
     render() {
         console.log('yoyo')
         console.log(this.state.data);
         return (
         <div className="site-card-wrapper" style={gridStyle}>
+        <Row>
+            <Col flex="auto">
+            <TeamDrawer></TeamDrawer>
+            </Col>
+        </Row>
         <Row>
             <Col span={3}>
             <TagSelect></TagSelect>
@@ -72,7 +89,15 @@ class MyGrid extends React.Component {
           {/* <Col span={8}> */}
             {this.props.data.map(li => (
                 <Col span={6}>
-                <MyCard name={li.name} number={li.pokedex_number} type={li.types}>
+                <MyCard
+                    name={li.name}
+                    number={li.pokedex_number}
+                    type={li.types}
+                    addTeam={mon => this.addTeam(mon)}
+                    team={this.state.team}
+                    setState={state => this.setState(state)}
+                    data={this.props.data ? this.props.data : 'hi'}
+                >
                 </MyCard>
                 </Col>
           ))}
