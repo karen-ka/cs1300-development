@@ -1254,7 +1254,6 @@ const data = [
        "is_legendary":0,
        "types":[
           "ground",
-          "ice"
        ]
     },
     {
@@ -1301,7 +1300,6 @@ const data = [
        "is_legendary":0,
        "types":[
           "ground",
-          "ice"
        ]
     },
     {
@@ -1718,7 +1716,6 @@ const data = [
        "is_legendary":0,
        "types":[
           "fire",
-          "ice"
        ]
     },
     {
@@ -1765,7 +1762,6 @@ const data = [
        "is_legendary":0,
        "types":[
           "fire",
-          "ice"
        ]
     },
     {

@@ -1,5 +1,19 @@
 @import '~antd/dist/antd.dark.css';
 
+.backtop {
+  padding: 0px 10px ;
+  background-color: #45BCF9;
+  color: #ffffff;
+  opacity: .8;
+  text-align: center;
+}
+.backtop:hover {
+  opacity: 1;
+}
+.backtop i {
+  font-size: 20px;
+}
+
 .ant-select {
   margin: 0 0 10px 8px;
 }
@@ -11,7 +25,9 @@
 }
 
 .ant-card-body {
-  padding-top: 0;
+  /* padding-top: 0;
+  padding-bottom: 0; */
+  padding: 0 0 0px 22px;
 }
 .ant-card-cover {
   display: inline-flex;
@@ -26,7 +42,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
   pointer-events: none;
 }
 
