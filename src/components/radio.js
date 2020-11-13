@@ -17,6 +17,7 @@ class MyRadio extends React.Component {
         asc: true,
         checked1: false,
         checked2: false,
+        data: [...pkmn],
     };
 
     handleReset = () => {
@@ -33,37 +34,46 @@ class MyRadio extends React.Component {
           value: e.target.value,
         });
 
-        console.log('hi', this.state);
         if(e.target.value === "name") {
             if(this.state.asc){
-                this.props.setState({data: this.props.data.sort((a, b) => a[e.target.value].localeCompare(b[e.target.value]))});
+                var newData = this.props.data.sort((a, b) => a[e.target.value].localeCompare(b[e.target.value]));
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b[e.target.value].localeCompare(a[e.target.value]))});
+                var newData = this.props.data.sort((a, b) => b[e.target.value].localeCompare(a[e.target.value]));
             }
+            this.props.setState({data: newData});
+            this.setState({data: newData});
         } else if(e.target.value === "pokedex_number"){
             if(this.state.asc){
-                this.props.setState({data: this.props.data.sort((a, b) => a["pokedex_number"] - b["pokedex_number"])});
+                var newData = this.props.data.sort((a, b) => a["pokedex_number"] - b["pokedex_number"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["pokedex_number"] - a["pokedex_number"])});
+                var newData = this.props.data.sort((a, b) => b["pokedex_number"] - a["pokedex_number"]);
             }
+            this.props.setState({data: newData});
+            this.setState({data: newData});
         }else if(e.target.value === "hp"){
             if(this.state.asc){
-                this.props.setState({data: this.props.data.sort((a, b) => a["hp"] - b["hp"])});
+                var newData = this.props.data.sort((a, b) => a["hp"] - b["hp"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["hp"] - a["hp"])});
-            }      
+                var newData = this.props.data.sort((a, b) => b["hp"] - a["hp"]);
+            }  
+            this.props.setState({data: newData});
+            this.setState({data: newData});
         }else if(e.target.value === "attack"){
             if(this.state.asc){
-                this.props.setState({data: this.props.data.sort((a, b) => a["attack"] - b["attack"])});
+                var newData = this.props.data.sort((a, b) => a["attack"] - b["attack"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["attack"] - a["attack"])});
-            }      
+                var newData = this.props.data.sort((a, b) => b["attack"] - a["attack"]);
+            }  
+            this.props.setState({data: newData});
+            this.setState({data: newData});    
         }else if(e.target.value === "defense"){
             if(this.state.asc){
-                this.props.setState({data: this.props.data.sort((a, b) => a["defense"] - b["defense"])});
+                var newData = this.props.data.sort((a, b) => a["defense"] - b["defense"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["defense"] - a["defense"])});
-            }      
+                var newData = this.props.data.sort((a, b) => b["defense"] - a["defense"]);
+            }  
+            this.props.setState({data: newData});
+            this.setState({data: newData});    
         }
       };
 
@@ -72,49 +82,57 @@ class MyRadio extends React.Component {
           console.log(this.state.asc, this.state.value, e)
           if(this.state.value === "name") {
             if(e){
-                this.props.setState({data: this.props.data.sort((a, b) => a[this.state.value].localeCompare(b[this.state.value]))});
+                var newData = this.props.data.sort((a, b) => a[e.target.value].localeCompare(b[e.target.value]));
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b[this.state.value].localeCompare(a[this.state.value]))});
+                var newData = this.props.data.sort((a, b) => b[e.target.value].localeCompare(a[e.target.value]));
             }
+            this.props.setState({data: newData});
+            this.setState({data: newData});
         } else if(this.state.value === "pokedex_number"){
             if(e){
-                this.props.setState({data: this.props.data.sort((a, b) => a["pokedex_number"] - b["pokedex_number"])});
+                var newData = this.props.data.sort((a, b) => a["pokedex_number"] - b["pokedex_number"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["pokedex_number"] - a["pokedex_number"])});
+                var newData = this.props.data.sort((a, b) => b["pokedex_number"] - a["pokedex_number"]);
             }
+            this.props.setState({data: newData});
+            this.setState({data: newData});
         }else if(this.state.value === "hp"){
             if(e){
-                this.props.setState({data: this.props.data.sort((a, b) => a["hp"] - b["hp"])});
+                var newData = this.props.data.sort((a, b) => a["hp"] - b["hp"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["hp"] - a["hp"])});
-            }      
+                var newData = this.props.data.sort((a, b) => b["hp"] - a["hp"]);
+            }  
+            this.props.setState({data: newData});
+            this.setState({data: newData});
         }else if(this.state.value === "attack"){
             if(e){
-                this.props.setState({data: this.props.data.sort((a, b) => a["attack"] - b["attack"])});
+                var newData = this.props.data.sort((a, b) => a["attack"] - b["attack"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["attack"] - a["attack"])});
-            }      
+                var newData = this.props.data.sort((a, b) => b["attack"] - a["attack"]);
+            }  
+            this.props.setState({data: newData});
+            this.setState({data: newData});    
         }else if(this.state.value === "defense"){
             if(e){
-                this.props.setState({data: this.props.data.sort((a, b) => a["defense"] - b["defense"])});
+                var newData = this.props.data.sort((a, b) => a["defense"] - b["defense"]);
             }else{
-                this.props.setState({data: this.props.data.sort((a, b) => b["defense"] - a["defense"])});
-            }      
+                var newData = this.props.data.sort((a, b) => b["defense"] - a["defense"]);
+            }  
+            this.props.setState({data: newData});
+            this.setState({data: newData});    
         }
       };
 
       onBoxChange = e => {
         console.log(e, this.state)
-        var newdata = [...orig];
+        var newdata = [...this.state.data];
         if(this.state.checked1 && this.state.checked2) {
-            var newdata = [...orig];
             if(e.target.value == "is_legendary") {
                 var test = newdata.filter(li => li["type2"] != "");
                 this.props.setState({data: test});
                 this.setState({checked1: false, checked2: true});
             } else {
                 var test = newdata.filter(li => li["is_legendary"] === 1);
-                console.log('y tho', newdata, test)
                 this.props.setState({data: test});
                 this.setState({checked1: true, checked2: false});
             }

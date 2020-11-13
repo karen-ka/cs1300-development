@@ -1,32 +1,20 @@
-import React, { useState } from 'react';
-import { Drawer, Button } from 'antd';
-import { Card, Col, Select, Row , Statistic} from 'antd';
+import React from 'react';
+import { Drawer } from 'antd';
+import { Col, Row , Statistic} from 'antd';
 import MyCard from './card.jsx';
-import { HeartOutlined } from '@ant-design/icons';
 
 const gridStyle = {
     width: '75%',
     align: 'center',
   };
 
-//   function calcTotalHP(team) {
-//     let sum = 0;
-//     for (let pokemon in team) {
-//       sum += pokemon.hp;
-//     }
-//     return sum;
-// };
 class TeamDrawer extends React.Component {
-    // li = useState(false);
-    // visible = li[0];
-    // setVisible = li[1];
     constructor(props) {
         super(props);
         this.state = {
             visible: false,
         };
     }
-
 
     showDrawer = () => {
         console.log('hi')
@@ -36,19 +24,8 @@ class TeamDrawer extends React.Component {
     onClose = () => {
         this.setState({visible: false});
     };
-    //  retStr() { 
-    //   return "hello world!!!" 
-    // }
-    // calcTotalHP() {
-    //   var sum = 0;
-    //   for (let pokemon in this.props.team) {
-    //     sum += pokemon.hp;
-    //   }
-    //   console.log('sum', sum);
-    //   return sum;
-    // };
+
     render () {
-        console.log('hiasdflk', this.props.team);
         var health = 0;
         var def = 0;
         var att = 0;
@@ -62,7 +39,6 @@ class TeamDrawer extends React.Component {
               <Drawer
                 title="Your Team"
                 placement="right"
-                // closable={false}
                 onClose={this.onClose}
                 visible={this.state.visible}
                 width={300}
@@ -85,9 +61,8 @@ class TeamDrawer extends React.Component {
                     </Row>
                     <br></br>
                   <Row gutter={[16, 24]} span={10} align="middle">
-                  {/* <Col span={4} flex="auto"> */}
             {this.props.team && this.props.team.map(li => (
-                <Col span={8} xs={20} sm={16} md={12} lg={8} xl={6}>
+                <Col flex="auto">
                 <MyCard
                     name={li.name}
                     number={li.number}
@@ -97,15 +72,10 @@ class TeamDrawer extends React.Component {
                     defense={li.defense}
                     inGrid={false}
                     removeTeam = {mon => this.props.removeTeam(mon)}
-                    // addTeam={mon => this.addTeam(mon)}
-                    // team={this.state.team}
-                    // setState={state => this.setState(state)}
-                    // data={this.props.data ? this.props.data : 'hi'}
                 >
                 </MyCard>
                </Col>
           ))}
-           {/* </Col> */}
            {this.props.team.length == 0 && <div><br></br><p>Looks like you don't have any Pokemon yet. Add some to your team to get started!</p></div>}
           </Row>
           </div>
