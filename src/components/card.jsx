@@ -55,7 +55,7 @@ export default class MyCard extends React.Component {
         size={this.props.inGrid ? 'default' : 'small'}
         extra={<p class='ant-card-extra-override'>{`# ${this.props.number}`}</p>}
         // hoverable
-        style={{ width: 240 }}
+        style={{ width: 240, textAlign: 'center' }}
         title={this.props.name}
         cover={<img style={{width: 100, height: 100, alignSelf: 'center'}}alt={this.props.name} src={`${process.env.PUBLIC_URL}/images/${this.props.number}.png`}/>}
         actions={

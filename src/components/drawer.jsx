@@ -84,10 +84,10 @@ class TeamDrawer extends React.Component {
                         </Col>
                     </Row>
                     <br></br>
-                  <Row gutter={[16, 24]} span={10}>
+                  <Row gutter={[16, 24]} span={10} align="middle">
                   {/* <Col span={4} flex="auto"> */}
             {this.props.team && this.props.team.map(li => (
-                <Col span={16} flex="auto"> 
+                <Col span={8} xs={20} sm={16} md={12} lg={8} xl={6}>
                 <MyCard
                     name={li.name}
                     number={li.number}

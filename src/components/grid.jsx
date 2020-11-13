@@ -61,7 +61,7 @@ class MyGrid extends React.Component {
       if(this.state.team.length >= 6) {
         message.error({
           content: <div>{`Unable to add ${mon.name}. Your team is already full.`}<Button type="link" onClick={this.handleMessageClick}>Manage Team</Button></div> ,
-          duration: 5,
+          duration: 4,
         });
       } else {
         var newTeam = this.state.team;
@@ -71,7 +71,7 @@ class MyGrid extends React.Component {
         // console.log('state', this.state);
         message.success({
           content: <div>{`Added ${mon.name} to the team.`} <Button type="link" onClick={this.handleMessageClick}>View Team</Button></div>,
-          duration: 4,
+          duration: 3,
         });
       }
     }
