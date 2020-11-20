@@ -6,6 +6,10 @@ import TeamDrawer from './drawer.jsx';
 import pokeball from '../pokeball1.png';
 import pkmn from '../data.js'
 import { Layout } from 'antd';
+import {
+  SearchOutlined,
+  UndoOutlined,
+} from '@ant-design/icons';
 const { Header, Footer, Sider, Content } = Layout;
 
 const gridStyle = {
@@ -18,7 +22,7 @@ const siderStyle = {
   position: 'fixed',
   left: 0,
   textAlign: 'left',
-  paddingLeft: '10px',
+  paddingLeft: '15px',
 }
 
 const orig = [...pkmn];
@@ -85,7 +89,7 @@ class MyGrid extends React.Component {
           <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
 
           <Col>
-          <Button type="primary" shape="round" size={'medium'} onClick={this.handleMessageClick}>
+          <Button type="primary" size={'medium'} onClick={this.handleMessageClick} icon={<SearchOutlined/>}>
                 View Team
               </Button>
           </Col>
@@ -98,7 +102,7 @@ class MyGrid extends React.Component {
         </Row>
         <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
         <Col>
-          <Button type="default" shape="round" size={'medium'} onClick={this.handleReset}>
+          <Button type="default" size={'medium'} onClick={this.handleReset} icon={<UndoOutlined/>}>
                 Clear
               </Button>
           </Col>
