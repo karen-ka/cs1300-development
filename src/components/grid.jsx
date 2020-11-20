@@ -113,7 +113,7 @@ class MyGrid extends React.Component {
         </Sider>
 
         <Layout style={{ marginLeft: 200 }}>
-        <Header style={{height: '20vh', backgroundColor: 'black'}}>
+        <Header style={{height: '20vh', backgroundColor: 'black', marginTop: '2vh'}}>
           <Row justify="space-around" align="middle">
             <Col>
           <h1 style={{fontSize: '50px'}}>TEAM</h1>
