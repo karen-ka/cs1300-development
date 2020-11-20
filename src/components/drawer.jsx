@@ -8,6 +8,9 @@ const gridStyle = {
     align: 'center',
   };
 
+  /*
+  * This is the component that opens the side drawer when a user clicks "View Team"
+  */
 class TeamDrawer extends React.Component {
     constructor(props) {
         super(props);
@@ -16,8 +19,8 @@ class TeamDrawer extends React.Component {
         };
     }
 
+    // Handler methods
     showDrawer = () => {
-        console.log('hi')
         this.setState({visible: true});
     };
     
@@ -25,7 +28,9 @@ class TeamDrawer extends React.Component {
         this.setState({visible: false});
     };
 
+
     render () {
+      // Calculate the health to be shown
         var health = 0;
         var def = 0;
         var att = 0;
@@ -34,6 +39,7 @@ class TeamDrawer extends React.Component {
           def += this.props.team[i].defense;
           att += this.props.team[i].attack;
         }
+
         return (
             <>
               <Drawer
