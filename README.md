@@ -2,8 +2,9 @@
 
 ## Organization of components
 - There are 4 major components used in this project
-    - Grid: which acts as the parent and layout container
+    - ParentContainer: which acts as the layout container
         - Using Ant Design's Layout components, it contains a sidebar and content section.
+        - The content section uses Ant Design's Grid layout.
     - Card: holds the info for each item
         - The same card component is reused for rendering the display grid and cards in the team drawer.
     - SelectorGroup: filter and sorting buttons on the sidebar

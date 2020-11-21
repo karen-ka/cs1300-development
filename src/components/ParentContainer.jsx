@@ -22,7 +22,6 @@ const siderStyle = {
   position: 'fixed',
   left: 0,
   textAlign: 'left',
-  paddingLeft: '15px',
 }
 
 const orig = [...pkmn];
@@ -90,7 +89,7 @@ class ParentContainer extends React.Component {
           <Layout>
           
           <Sider style={siderStyle}>
-          <Space direction="vertical" align="center" size="large" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', height: '100%'}}>
+          <Space direction="vertical" align="center" size="large" style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
 
           <Row justify="space-around" gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]}>
             <Col>
