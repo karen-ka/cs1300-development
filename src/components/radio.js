@@ -15,8 +15,8 @@ class MyRadio extends React.Component {
     state = {
         value: "pokedex_number",
         asc: true,
-        checked1: false,
-        checked2: false,
+        legendaryChecked: false,
+        dualChecked: false,
         data: [...pkmn],
     };
 
@@ -34,131 +34,71 @@ class MyRadio extends React.Component {
           value: e.target.value,
         });
 
-        if(e.target.value === "name") {
-            if(this.state.asc){
-                var newData = this.props.data.sort((a, b) => a[e.target.value].localeCompare(b[e.target.value]));
-            }else{
-                var newData = this.props.data.sort((a, b) => b[e.target.value].localeCompare(a[e.target.value]));
-            }
-            this.props.setState({data: newData});
-            this.setState({data: newData});
-        } else if(e.target.value === "pokedex_number"){
-            if(this.state.asc){
-                var newData = this.props.data.sort((a, b) => a["pokedex_number"] - b["pokedex_number"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["pokedex_number"] - a["pokedex_number"]);
-            }
-            this.props.setState({data: newData});
-            this.setState({data: newData});
-        }else if(e.target.value === "hp"){
-            if(this.state.asc){
-                var newData = this.props.data.sort((a, b) => a["hp"] - b["hp"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["hp"] - a["hp"]);
-            }  
-            this.props.setState({data: newData});
-            this.setState({data: newData});
-        }else if(e.target.value === "attack"){
-            if(this.state.asc){
-                var newData = this.props.data.sort((a, b) => a["attack"] - b["attack"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["attack"] - a["attack"]);
-            }  
-            this.props.setState({data: newData});
-            this.setState({data: newData});    
-        }else if(e.target.value === "defense"){
-            if(this.state.asc){
-                var newData = this.props.data.sort((a, b) => a["defense"] - b["defense"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["defense"] - a["defense"]);
-            }  
-            this.props.setState({data: newData});
-            this.setState({data: newData});    
-        }
+        var newData = this.sort(e.target.value, this.state.asc, this.props.data);
+        this.props.setState({data: newData});
+        this.setState({data: newData});
       };
 
       onSwitchChange = e => {
           this.setState({asc: e});
-          console.log(this.state.asc, this.state.value, e)
-          if(this.state.value === "name") {
-            if(e){
-                var newData = this.props.data.sort((a, b) => a[e.target.value].localeCompare(b[e.target.value]));
-            }else{
-                var newData = this.props.data.sort((a, b) => b[e.target.value].localeCompare(a[e.target.value]));
-            }
+            var newData = this.sort(this.state.value, e, this.props.data);
             this.props.setState({data: newData});
             this.setState({data: newData});
-        } else if(this.state.value === "pokedex_number"){
-            if(e){
-                var newData = this.props.data.sort((a, b) => a["pokedex_number"] - b["pokedex_number"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["pokedex_number"] - a["pokedex_number"]);
-            }
-            this.props.setState({data: newData});
-            this.setState({data: newData});
-        }else if(this.state.value === "hp"){
-            if(e){
-                var newData = this.props.data.sort((a, b) => a["hp"] - b["hp"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["hp"] - a["hp"]);
-            }  
-            this.props.setState({data: newData});
-            this.setState({data: newData});
-        }else if(this.state.value === "attack"){
-            if(e){
-                var newData = this.props.data.sort((a, b) => a["attack"] - b["attack"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["attack"] - a["attack"]);
-            }  
-            this.props.setState({data: newData});
-            this.setState({data: newData});    
-        }else if(this.state.value === "defense"){
-            if(e){
-                var newData = this.props.data.sort((a, b) => a["defense"] - b["defense"]);
-            }else{
-                var newData = this.props.data.sort((a, b) => b["defense"] - a["defense"]);
-            }  
-            this.props.setState({data: newData});
-            this.setState({data: newData});    
-        }
       };
 
+      sort(type, asc, data) {
+          if(type === "name") {
+            if(asc){
+                var newData = data.sort((a, b) => a[type].localeCompare(b[type]));
+            }else{
+                var newData = data.sort((a, b) => b[type].localeCompare(a[type]));
+            }
+          } else {
+            if(asc){
+                var newData = data.sort((a, b) => a[type] - b[type]);
+            }else{
+                var newData = data.sort((a, b) => b[type] - a[type]);
+            }  
+          }
+        return newData;
+      }
+
       onBoxChange = e => {
-        console.log(e, this.state)
-        var newdata = [...this.state.data];
-        if(this.state.checked1 && this.state.checked2) {
+        var clean = [...orig]
+        console.log(e.target.value)
+        if(this.state.legendaryChecked && this.state.dualChecked) {
             if(e.target.value == "is_legendary") {
-                var test = newdata.filter(li => li["type2"] != "");
-                this.props.setState({data: test});
-                this.setState({checked1: false, checked2: true});
+                var test = clean.filter(li => li["type2"] != "");
+                var sorted = this.sort(this.state.value, this.state.asc, test);
+                this.props.setState({data: sorted});
+                this.setState({legendaryChecked: false, dualChecked: true});
             } else {
-                var test = newdata.filter(li => li["is_legendary"] === 1);
-                this.props.setState({data: test});
-                this.setState({checked1: true, checked2: false});
+                var test = clean.filter(li => li["is_legendary"] === 1);
+                var sorted = this.sort(this.state.value, this.state.asc, test);
+                this.props.setState({data: sorted});
+                this.setState({legendaryChecked: true, dualChecked: false});
             }
         }
         else if(e.target.value == "is_legendary") {
             if(e.target.checked == true) {
-            var test = this.props.data.filter(li => li["is_legendary"] === 1);
-            this.props.setState({data: test});
-            this.setState({checked1: true});
+                var test = this.props.data.filter(li => li["is_legendary"] === 1);
+                this.props.setState({data: test});
+                this.setState({legendaryChecked: true});
             } else {
-                var newdata = [...orig];
-                this.props.setState({data: newdata});
-                this.setState({checked1: false});
+                var sorted = this.sort(this.state.value, this.state.asc, clean);
+                this.props.setState({data: sorted});
+                this.setState({legendaryChecked: false});
             }
 
         } else if (e.target.value=='dual_type') {
             if(e.target.checked == true) {
                 var test = this.props.data.filter(li => li["type2"] != "");
-                console.log('dualtypefilter', test)
                 this.props.setState({data: test});
-                this.setState({checked2: true});
+                this.setState({dualChecked: true});
             } else {
-                var newdata = [...orig];
-                console.log('newdata', newdata)
-                this.props.setState({data: newdata});   
-                this.setState({checked2: false});            
+                var sorted = this.sort(this.state.value, this.state.asc, clean);
+                this.props.setState({data: sorted});
+                this.setState({dualChecked: false});            
             }
 
         }
@@ -168,9 +108,9 @@ class MyRadio extends React.Component {
         return (
             <div>
             <p>FILTER BY</p>
-            <Checkbox onChange={this.onBoxChange} value="dual_type">Dual Type</Checkbox>
+            <Checkbox onChange={this.onBoxChange} value="dual_type" checked={this.state.dualChecked}>Dual Type</Checkbox>
             <br></br>
-            <Checkbox onChange={this.onBoxChange} value="is_legendary">Is Legendary</Checkbox>
+            <Checkbox onChange={this.onBoxChange} value="is_legendary" checked={this.state.legendaryChecked}>Is Legendary</Checkbox>
             <br></br>
             <p></p>
             <p></p>
