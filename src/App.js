@@ -1,5 +1,5 @@
 import './App.css';
-import MyGrid from './components/grid';
+import ParentContainer from './components/ParentContainer.jsx';
 import data from './data.js'
 import { BackTop } from 'antd';
 
@@ -7,7 +7,7 @@ import { BackTop } from 'antd';
 function App() {
   return (
     <div className="App">
-      <MyGrid data={data}></MyGrid>
+      <ParentContainer data={data}></ParentContainer>
       <div classname='backtop'><BackTop></BackTop></div>
     </div>
   );

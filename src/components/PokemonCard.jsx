@@ -4,7 +4,6 @@ import typemap from '../types.js'
 import { PlusCircleOutlined, MinusCircleOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
-const images = require.context('../imgs', true);
 function typetags(props) {
     return <span>
     {props.map(tag => {
@@ -18,8 +17,7 @@ function typetags(props) {
   </span>;
 }
 
-export default class MyCard extends React.Component {
-
+export default class PokemonCard extends React.Component {
     constructor(props) {
         super(props);
       }
@@ -44,25 +42,24 @@ export default class MyCard extends React.Component {
                 Remove from team
             </Button>))]
           }
-        >
-      <Meta description={
-        <div>
-          {typetags(this.props.type)}
-          <br></br>
-          <br></br>
-          <Row gutter={8} style={{padding: '0 0 0 22px'}}>
-            <Col>
-            <p><b>HP: </b>{this.props.hp}</p>
-            </Col>
-            <Col>
-            <p><b>ATT: </b>{this.props.attack}</p>
-            </Col>
-            <Col>
-            <p><b>DEF: </b>{this.props.defense}</p>
-            </Col>            
-            </Row>
-        </div>
-        } />
-        </Card>
+      >
+        <Meta description={
+          <div>
+            {typetags(this.props.type)}
+            <br></br>
+            <br></br>
+            <Row gutter={8} style={{padding: '0 0 0 22px'}}>
+              <Col>
+              <p><b>HP: </b>{this.props.hp}</p>
+              </Col>
+              <Col>
+              <p><b>ATT: </b>{this.props.attack}</p>
+              </Col>
+              <Col>
+              <p><b>DEF: </b>{this.props.defense}</p>
+              </Col>            
+              </Row>
+          </div>} />
+      </Card>
     }
   }
