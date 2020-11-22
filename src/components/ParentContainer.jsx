@@ -68,17 +68,9 @@ class ParentContainer extends React.Component {
     }
 
     removeTeam(mon) {
-      // Don't use filter method because we allow duplicate Pokemon to be added to the team
+      // Splice by index because we allow duplicate Pokemon on a team
       var newTeam = this.state.team;
-      var index = -1;
-      for(var i = 0; i < newTeam.length; i++){
-        if(newTeam[i].number == mon.number){
-            index = i;
-        }
-      }
-      if (index > -1) {
-        newTeam.splice(index, 1);
-      }
+      newTeam.splice(mon.index, 1);
       this.setState({team: newTeam});
     }
 

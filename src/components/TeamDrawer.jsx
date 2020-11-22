@@ -28,6 +28,30 @@ export default class TeamDrawer extends React.Component {
         this.setState({visible: false});
     };
 
+    makeCards = () => {
+      var cards = [];
+      for(var i=0; i < this.props.team.length; i++){
+        var li = this.props.team[i]
+        cards.push(
+          <Col flex="auto">
+          <PokemonCard
+              index={i}
+              name={li.name}
+              number={li.number}
+              type={li.type}
+              hp={li.hp}
+              attack={li.attack}
+              defense={li.defense}
+              inGrid={false}
+              removeTeam = {mon => this.props.removeTeam(mon)}
+          >
+          </PokemonCard>
+        </Col>
+        );
+      }
+      return cards;
+    }
+
 
     render () {
       // Calculate the health to be shown
@@ -68,21 +92,7 @@ export default class TeamDrawer extends React.Component {
               >
               <div style={gridStyle}>
                 <Row gutter={[16, 24]} span={10} align="middle">
-                  {this.props.team && this.props.team.map(li => (
-                      <Col flex="auto">
-                      <PokemonCard
-                          name={li.name}
-                          number={li.number}
-                          type={li.type}
-                          hp={li.hp}
-                          attack={li.attack}
-                          defense={li.defense}
-                          inGrid={false}
-                          removeTeam = {mon => this.props.removeTeam(mon)}
-                      >
-                      </PokemonCard>
-                    </Col>
-                  ))}
+                  {this.makeCards()}
                   {this.props.team.length === 0 && <div><br></br><p>Looks like you don't have any Pokemon yet. Add some to your team to get started!</p></div>}
                 </Row>
               </div>

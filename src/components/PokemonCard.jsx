@@ -37,7 +37,7 @@ export default class PokemonCard extends React.Component {
                 Add to team
             </Button>: (<Button
                 icon={<MinusCircleOutlined />}
-                onClick={() => this.props.removeTeam({name: this.props.name, number: this.props.number, type: this.props.type, hp: this.props.hp, attack: this.props.attack, defense: this.props.defense})}
+                onClick={() => this.props.removeTeam({name: this.props.name, number: this.props.number, type: this.props.type, hp: this.props.hp, attack: this.props.attack, defense: this.props.defense, index: this.props.index})}
             >
                 Remove from team
             </Button>))]
